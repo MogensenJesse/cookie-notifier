@@ -2,6 +2,7 @@
 // https://github.com/MogensenJesse/cookie-notifier
 
 if(CookieNotifier === undefined) var CookieNotifier = {};
+if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/CCSE.js');
 
 CookieNotifier.name = 'Cookie Notifier';
 CookieNotifier.version = '1.1.0';
