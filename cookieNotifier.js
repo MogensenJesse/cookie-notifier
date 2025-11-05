@@ -2,6 +2,7 @@
 // https://github.com/MogensenJesse/cookie-notifier
 
 if(CookieNotifier === undefined) var CookieNotifier = {};
+if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/' + (0 ? 'Beta/' : '') + 'CCSE.js');
 
 CookieNotifier.name = 'Cookie Notifier';
 CookieNotifier.version = '1.1.0';
@@ -51,31 +52,22 @@ CookieNotifier.launch = function(){
 		}
 	};
 
-	// Register with CCSE if available for better mod manager compatibility
-	if(typeof CCSE != 'undefined' && CCSE.isLoaded){
-		CCSE.ConfirmGameVersion(CookieNotifier.name, CookieNotifier.version, CookieNotifier.GameVersion);
+	if(typeof CCSE != 'undefined' && CCSE.ConfirmGameVersion){
+		if(CCSE.ConfirmGameVersion(CookieNotifier.name, CookieNotifier.version, CookieNotifier.GameVersion)) Game.registerMod(CookieNotifier.name, CookieNotifier);
 	}
-	
-	Game.registerMod(CookieNotifier.name, CookieNotifier);
-};
+	else{
+		Game.registerMod(CookieNotifier.name, CookieNotifier);
+	}
+}
 
-// Prevent double-loading
+
 if(!CookieNotifier.isLoaded){
-	if(typeof CCSE != 'undefined' && CCSE.isLoaded){
+	if(CCSE && CCSE.isLoaded){
 		CookieNotifier.launch();
 	}
 	else{
-		// Wait for CCSE to load if it's available
-		if(typeof CCSE == 'undefined') var CCSE = {};
+		if(!CCSE) var CCSE = {};
 		if(!CCSE.postLoadHooks) CCSE.postLoadHooks = [];
 		CCSE.postLoadHooks.push(CookieNotifier.launch);
-		
-		// Fallback: register immediately if CCSE doesn't load within a reasonable time
-		// This ensures the mod works even without CCSE
-		setTimeout(function(){
-			if(!CookieNotifier.isLoaded){
-				CookieNotifier.launch();
-			}
-		}, 1000);
 	}
 }
