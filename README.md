@@ -1,6 +1,6 @@
 # Cookie Notifier
 
-QoL addon that switches the browser tab favicon in Cookie Clicker to indicate golden and wrath cookie spawns.
+QoL mod that switches the browser tab favicon in Cookie Clicker to indicate golden and wrath cookie spawns.
 
 ## Usage
 
