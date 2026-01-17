@@ -6,7 +6,7 @@ if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieC
 
 CookieNotifier.name = 'Cookie Notifier';
 CookieNotifier.version = '1.1.0';
-CookieNotifier.GameVersion = '2.052';
+// CookieNotifier.GameVersion = '2.052';
 
 CookieNotifier.launch = function(){
 	CookieNotifier.init = function(){
